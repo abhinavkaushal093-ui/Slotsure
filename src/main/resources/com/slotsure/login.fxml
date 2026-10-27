@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.slotsure.controller.LoginController" styleClass="app-root">
+    
+    <VBox alignment="CENTER" maxWidth="400" maxHeight="450" spacing="25" styleClass="form-card">
+        <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
+        
+        <VBox alignment="CENTER" spacing="5">
+            <Label text="SlotSure" styleClass="brand" style="-fx-text-fill: #0f172a; -fx-font-size: 32px;"/>
+            <Label text="Sign in to your campus account" styleClass="muted"/>
+        </VBox>
+
+        <VBox spacing="15" VBox.vgrow="ALWAYS">
+            <VBox spacing="6">
+                <Label text="Email Address" styleClass="input-label"/>
+                <TextField fx:id="emailField" promptText="name@college.edu" maxWidth="Infinity"/>
+            </VBox>
+            
+            <VBox spacing="6">
+                <Label text="Password" styleClass="input-label"/>
+                <PasswordField fx:id="passwordField" maxWidth="Infinity"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="Log in as:" styleClass="input-label"/>
+                <ComboBox fx:id="roleCombo" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+
+        <Button text="Login" onAction="#handleLogin" defaultButton="true" maxWidth="Infinity" styleClass="primary-button"/>
+        
+        <Label fx:id="errorLabel" text="" style="-fx-text-fill: #ef4444; -fx-font-size: 13px; -fx-font-weight: 500;" wrapText="true"/>
+    </VBox>
+    
+</StackPane>

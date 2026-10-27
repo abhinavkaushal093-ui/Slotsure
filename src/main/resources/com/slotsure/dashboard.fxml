@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.slotsure.controller.DashboardController" styleClass="app-root">
+    
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="14" styleClass="topbar">
+            <padding><Insets top="15" right="30" bottom="15" left="30"/></padding>
+            <VBox spacing="3">
+                <Label text="SlotSure" styleClass="brand"/>
+                <Label text="CAMPUS RESOURCE MANAGEMENT" styleClass="eyebrow"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox alignment="CENTER_RIGHT" spacing="15">
+                <VBox alignment="CENTER_RIGHT" spacing="2">
+                    <Label fx:id="userNameLabel" text="User" styleClass="user-name"/>
+                    <Label fx:id="userRoleLabel" text="ROLE" styleClass="user-role"/>
+                </VBox>
+                <Button text="Log Out" onAction="#handleLogout" styleClass="danger-button" style="-fx-padding: 6px 12px; -fx-font-size: 12px;"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <center>
+        <TabPane fx:id="mainTabPane" side="LEFT" tabClosingPolicy="UNAVAILABLE" styleClass="main-tabs">
+            
+            <Tab text="Reserve Facility">
+                <ScrollPane fitToWidth="true" styleClass="content-scroll">
+                    <VBox spacing="25">
+                        <padding><Insets top="30" right="40" bottom="40" left="40"/></padding>
+                        <Label text="Create New Booking" styleClass="page-title"/>
+                        <VBox spacing="20" styleClass="form-card">
+                            <VBox spacing="8">
+                                <Label text="Select Campus Resource" styleClass="input-label"/>
+                                <ComboBox fx:id="resourceCombo" maxWidth="Infinity" promptText="Choose a room or equipment..."/>
+                            </VBox>
+                            <VBox spacing="8">
+                                <Label text="Academic Purpose" styleClass="input-label"/>
+                                <TextField fx:id="purposeField" promptText="e.g. Data Structures Lab Exam"/>
+                            </VBox>
+                            <HBox spacing="20">
+                                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                                    <Label text="Date" styleClass="input-label"/>
+                                    <DatePicker fx:id="startDatePicker" maxWidth="Infinity"/>
+                                </VBox>
+                                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                                    <Label text="Start Time (HH:mm)" styleClass="input-label"/>
+                                    <TextField fx:id="startTimeField" text="10:00"/>
+                                </VBox>
+                                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                                    <Label text="End Time (HH:mm)" styleClass="input-label"/>
+                                    <TextField fx:id="endTimeField" text="11:30"/>
+                                </VBox>
+                            </HBox>
+                            <Region prefHeight="10"/>
+                            <Button text="Confirm Reservation" onAction="#handleBooking" maxWidth="Infinity" styleClass="primary-button"/>
+                            <Label fx:id="messageLabel" text="Fill out the details above to secure a slot." styleClass="message-label"/>
+                        </VBox>
+                    </VBox>
+                </ScrollPane>
+            </Tab>
+
+            <Tab fx:id="adminScheduleTab" text="Master Schedule" onSelectionChanged="#loadAdminSchedule">
+                <VBox spacing="18" styleClass="content-scroll">
+                    <padding><Insets top="30" right="40" bottom="40" left="40"/></padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="Campus Booking Ledger" styleClass="page-title"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="Cancel Selected" onAction="#handleCancelBooking" styleClass="danger-button"/>
+                    </HBox>
+                    <TableView fx:id="scheduleTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+                        <columns>
+                            <TableColumn fx:id="colRes" text="Facility" prefWidth="200"/>
+                            <TableColumn fx:id="colUser" text="Booked By" prefWidth="180"/>
+                            <TableColumn fx:id="colStart" text="Start" prefWidth="140"/>
+                            <TableColumn fx:id="colEnd" text="End" prefWidth="140"/>
+                            <TableColumn fx:id="colPurp" text="Purpose" prefWidth="250"/>
+                            <TableColumn fx:id="colStat" text="Status" prefWidth="120"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <Tab fx:id="adminResourceTab" text="Facility Inventory" onSelectionChanged="#loadAdminResources">
+                <VBox spacing="18" styleClass="content-scroll">
+                    <padding><Insets top="30" right="40" bottom="40" left="40"/></padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="Manage Physical Assets" styleClass="page-title"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="Toggle Active Status" onAction="#handleToggleResource" styleClass="secondary-button"/>
+                    </HBox>
+                    <TableView fx:id="inventoryTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+                        <columns>
+                            <TableColumn fx:id="invName" text="Facility Name" prefWidth="220"/>
+                            <TableColumn fx:id="invType" text="Type" prefWidth="120"/>
+                            <TableColumn fx:id="invLoc" text="Location" prefWidth="220"/>
+                            <TableColumn fx:id="invCap" text="Capacity" prefWidth="100"/>
+                            <TableColumn fx:id="invActive" text="Is Active?" prefWidth="100"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+            
+        </TabPane>
+    </center>
+</BorderPane>
