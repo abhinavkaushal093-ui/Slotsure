@@ -17,7 +17,7 @@ This project follows a structured **Model-View-Controller (MVC)** architectural 
 * **Build Tool:** Maven for dependency management and compiling.
 * **Testing:** JUnit for business logic verification.
 
-## 📥 Download and Run (No Setup Required!)
+## Download and Run (No Setup Required!)
 Don't want to build from source? You can download the ready-to-use application directly:
 
 1. Go to the [Releases](https://github.com/abhinavkaushal093-ui/Slotsure/releases) tab on the right side of this page.
